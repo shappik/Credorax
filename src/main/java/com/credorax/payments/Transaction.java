@@ -4,29 +4,20 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+
 import java.util.UUID;
 
 @Entity
 public class Transaction {
-
-//    {
-//        invoice: 1234567,
-//                amount: 1299,
-//            currency: 'EUR',
-//            cardholder: {
-//                  name: 'First Last',
-//                  email: 'email@domain.com'
-//    },
-//        card: {
-//            pan: '4200000000000001',
-//                    expiry: '0624',
-//                    cvv: '789'
-//        }
-//    }
     @Id
     private String id;
+    @NotBlank(message = "invoice is mandatory")
     private String invoice;
-    private int amount;
+    @NotBlank(message = "amount is mandatory")
+    @Positive
+    private String amount;
     @OneToOne(cascade = {CascadeType.ALL})
     private CardHolder cardHolder;
     @OneToOne(cascade = {CascadeType.ALL})
@@ -48,11 +39,11 @@ public class Transaction {
         this.invoice = invoice;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -75,7 +66,7 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(String invoice, int amount, CardHolder cardHolder, Card card) {
+    public Transaction(String invoice, String amount, CardHolder cardHolder, Card card) {
         this.id = UUID.randomUUID().toString();
         this.invoice = invoice;
         this.amount = amount;

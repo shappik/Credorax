@@ -53,5 +53,4 @@ public class Card {
     public void setCvv(String cvv) {
         this.cvv = cvv;
     }
-
 }
