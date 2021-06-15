@@ -6,7 +6,7 @@ Installation instructions:
 1. Run maven build using JDK 11
    Command example: mvn clean install
 
-2. Run Sping Booy Application
+2. Run Sping Boot Application
    command example: mvn spring-boot:run
    
 3. Use Postman to run the REST API commands:
